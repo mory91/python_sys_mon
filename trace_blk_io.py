@@ -70,18 +70,17 @@ while 1:
         sleep(interval)
     except KeyboardInterrupt:
         exiting = 1
-
-    print()
     
+    has_item = True
 
+    while has_item:
+        try:
+            event = b["queue"].pop()
+            t, data_len = event.ts, event.data_len
+            print(t, data_len)
+        except KeyError:
+            has_item = False
 
-    
-    try:
-        event = b["queue"].pop()
-        t, data_len = event.ts, event.data_len
-        print(t, data_len)
-    except KeyError:
-        print("XXXXXXXXXXXXXXXXXXX")
 
     
     
